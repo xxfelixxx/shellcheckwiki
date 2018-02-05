@@ -24,7 +24,7 @@ Video in action on [Ascii Cinema](https://asciinema.org/a/J0z2MZTJe8iesCGk2OsEL3
 Install
 -------
 
-cpan App::ShellCheckWiki
+    cpan App::ShellCheckWiki
 
 
 
