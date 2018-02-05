@@ -19,8 +19,10 @@ Demo
 
 Video in action on [Ascii Cinema](https://asciinema.org/a/J0z2MZTJe8iesCGk2OsEL3sWb)
 
-Dependencies
-------------
+Install
+-------
 
-perl libraries WWW::Mechanize and Term::ANSIColor
+cpan App::ShellCheckWiki
+
+
 
