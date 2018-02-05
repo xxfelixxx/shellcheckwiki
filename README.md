@@ -1,5 +1,7 @@
 # shellcheckwiki
 
+[![CPAN version](https://badge.fury.io/pl/App-ShellCheckWiki.svg)](https://badge.fury.io/pl/App-ShellCheckWiki)
+
 Summary
 -------
 
