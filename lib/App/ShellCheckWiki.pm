@@ -1,10 +1,13 @@
-#!/usr/bin/env perl
+package App::ShellCheckWiki;
 
-use warnings;
+use 5.006;
 use strict;
+use warnings;
 
 use Term::ANSIColor;
 use WWW::Mechanize;
+
+our $VERSION = '0.01';
 
 my $formats = {
     '# '   => 'bold green',   # H1
@@ -18,22 +21,24 @@ my $wiki_toc = 'https://github.com/koalaman/shellcheck/wiki';
 
 my $mech = WWW::Mechanize->new( autocheck => 0 );
 
-my $page = $ARGV[0];
-if (defined($page)) {
-    my ($page_id) = $page =~ m|(\d+)$|;
-    my $wiki_page = $wiki_url . '/SC' . $page_id . '.md';
-    $mech->get($wiki_page);
-    if ($mech->success) {
-        print colored(['green'],"ShellCheck Error CS$page_id\n");
-        format_page($mech->content());
+sub run {
+    my $page = $ARGV[0];
+    if (defined($page)) {
+        my ($page_id) = $page =~ m|(\d+)$|;
+        my $wiki_page = $wiki_url . '/SC' . $page_id . '.md';
+        $mech->get($wiki_page);
+        if ($mech->success) {
+            print colored(['green'],"ShellCheck Error CS$page_id\n");
+            format_page($mech->content());
+        } else {
+            print "Unable to find page '$page'!\n";
+            show_topics();
+        }
     } else {
-        print "Unable to find page '$page'!\n";
         show_topics();
     }
-} else {
-    show_topics();
+    exit 0;
 }
-exit 0;
 
 sub format_page {
     my ($content) = @_;
@@ -132,3 +137,96 @@ sub number_range {
     return @output_ranges;
 }
 
+1; # End of App::ShellCheckWiki
+__END__
+
+=head1 NAME
+
+App::ShellCheckWiki - Check the wiki for details about shellcheck errors.
+
+=head1 VERSION
+
+Version 0.01
+
+=cut
+
+=head1 SYNOPSIS
+
+Check the official ShellCheck wiki page for detailed shellcheck error info.
+
+    use App::ShellCheckWiki;
+
+    App::ShellCheckWiki->run();
+
+=head1 AUTHOR
+
+Felix Tubiana, C<< <felixtubiana at gmail.com> >>
+
+=head1 BUGS
+
+Please report any bugs or feature requests to C<bug-app-shellcheckwiki at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=App-ShellCheckWiki>.  I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
+
+
+
+
+=head1 SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc App::ShellCheckWiki
+
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker (report bugs here)
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=App-ShellCheckWiki>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/App-ShellCheckWiki>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/App-ShellCheckWiki>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/App-ShellCheckWiki/>
+
+=back
+
+
+=head1 ACKNOWLEDGEMENTS
+
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright 2018 Felix Tubiana.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the the Artistic License (1.0). You may obtain a
+copy of the full license at:
+
+L<http://www.perlfoundation.org/artistic_license_1_0>
+
+Aggregation of this Package with a commercial distribution is always
+permitted provided that the use of this Package is embedded; that is,
+when no overt attempt is made to make this Package's interfaces visible
+to the end user of the commercial distribution. Such use shall not be
+construed as a distribution of this Package.
+
+The name of the Copyright Holder may not be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+
+=cut
