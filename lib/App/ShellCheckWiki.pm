@@ -105,7 +105,7 @@ sub show_topics {
 }
 
 sub number_range {
-    my (@numbers) = sort(@_);
+    my (@numbers) = sort { $a <=> $b } @_;
     my @ranges;
     my $start = shift @numbers;
     my $stop = $start;
