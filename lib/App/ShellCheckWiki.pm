@@ -154,9 +154,30 @@ Version 0.02
 
 Check the official ShellCheck wiki page for detailed shellcheck error info.
 
-    use App::ShellCheckWiki;
+    # Show the wiki in the terminal for ShellCheck Error SC1234
+    $ shellcheckwiki 1234
 
-    App::ShellCheckWiki->run();
+    # Show List of all Errors documented in the wiki
+    $ shellcheckwiki
+
+=head1 INSPIRATION
+
+    ShellCheck is a static analysis tool for shell scripts.  Available from
+    L<Github|https://github.com/koalaman/shellcheck> with an online demo at
+    L<shellcheck.net|https://www.shellcheck.net/>.
+
+    Think of it as the perlcritic for shell scripts.  It produces useful, but
+    terse error messages with an error code, like SC1234.  There is a
+    long-form description of most of these messages available on the
+    L<github wiki page|https://github.com/koalaman/shellcheck/wiki>.
+
+    The shellcheckwiki script can be used to fetch and display in the terminal
+    a specific page or a table of contents, all from the comfort of the command
+    line.
+
+=head1 DEMO
+
+    See shellcheckwiki in action at L<asciinema|https://asciinema.org/a/J0z2MZTJe8iesCGk2OsEL3sWb>
 
 =head1 AUTHOR
 
@@ -197,6 +218,10 @@ L<http://cpanratings.perl.org/d/App-ShellCheckWiki>
 =item * Search CPAN
 
 L<http://search.cpan.org/dist/App-ShellCheckWiki/>
+
+=item * Github Repo
+
+L<http://github.com/xxfelixxx/shellcheckwiki>
 
 =back
 
