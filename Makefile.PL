@@ -30,8 +30,8 @@ WriteMakefile(
         resources => {
             repository => {
                 type => 'git',
-                url  => 'https://github.com/xxfelixxx/shelcheckwiki.git',
-                web  => 'https://github.com/xxfelixxx/shelcheckwiki',
+                url  => 'https://github.com/xxfelixxx/shellcheckwiki.git',
+                web  => 'https://github.com/xxfelixxx/shellcheckwiki',
             },
         }})
      : ()
