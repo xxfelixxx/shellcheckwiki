@@ -1,5 +1,8 @@
 Revision history for App-ShellCheckWiki
 
+0.04    Fri Feb  9 04:40:33 UTC 2018
+        Added --version and --help flags to shellcheckwiki script.
+
 0.03    Tue Feb  6 01:15:01 UTC 2018
         Updated pod in App::ShellCheckWiki
 
