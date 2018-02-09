@@ -4,6 +4,45 @@ use warnings;
 use strict;
 
 use App::ShellCheckWiki;
+use File::Basename qw( basename );
+use Getopt::Long qw( GetOptions );
+
+my ($help, $version);
+GetOptions(
+    'help|h'    => \$help,
+    'version|v' => \$version,
+    ) or usage();
+
+$help and usage();
+$version and version();
 
 App::ShellCheckWiki->run();
 exit 0;
+
+sub usage {
+    print <<EOUSAGE;
+ShellCheck      [ https://www.shellcheck.net/ ]
+ShellCheck Wiki [ https://github.com/koalaman/shellcheck/wiki ]
+
+Fetch the ShellCheck Wiki page for a particular shellcheck error SC1234:
+    $0 SC1234
+    --- or ---
+    $0 1234
+
+List all of the ShellCheck Wiki pages available:
+    $0
+
+EOUSAGE
+
+exit 0;
+}
+
+sub version {
+    my ($name) = basename($0);
+    my ($version) = $App::ShellCheckWiki::VERSION;
+    print <<EOVERSION;
+$name : App::ShellCheckWiki Version $version
+EOVERSION
+
+    exit 0;
+}
